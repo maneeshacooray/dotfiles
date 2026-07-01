@@ -4,7 +4,9 @@ Personal config files for macOS (Apple M4).
 
 | Tool | Config |
 |------|--------|
-| zsh | `.zshrc`, `.zprofile` |
+| zsh | `.zshrc`, `.zprofile`, `.zshenv` |
+| bash | `.bashrc`, `.profile` |
+| fzf | `.fzf.zsh`, `.fzf.bash` |
 | Neovim | `nvim/` (LazyVim) |
 | tmux | `tmux/tmux.conf` |
 | Kitty | `kitty/kitty.conf` |
@@ -18,9 +20,14 @@ Personal config files for macOS (Apple M4).
 ```sh
 git clone git@github.com:maneeshacooray/dotfiles.git ~/dotfiles
 
-# zsh
+# zsh / bash / fzf
 ln -sf ~/dotfiles/.zshrc ~/.zshrc
 ln -sf ~/dotfiles/.zprofile ~/.zprofile
+ln -sf ~/dotfiles/.zshenv ~/.zshenv
+ln -sf ~/dotfiles/.bashrc ~/.bashrc
+ln -sf ~/dotfiles/.profile ~/.profile
+ln -sf ~/dotfiles/.fzf.zsh ~/.fzf.zsh
+ln -sf ~/dotfiles/.fzf.bash ~/.fzf.bash
 
 # configs
 ln -sf ~/dotfiles/nvim ~/.config/nvim

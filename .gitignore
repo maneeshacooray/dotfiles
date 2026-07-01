@@ -16,3 +16,6 @@ tmux/plugins/
 
 # DS_Store
 .DS_Store
+
+# yarn auto-generated
+.yarnrc
