@@ -1,0 +1,49 @@
+# Add your local tmux config here# Add your local tmux config here# Add your local tmux config here
+
+# List of plugins
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'tmux-plugins/tmux-sensible'
+set -g @plugin 'tmux-plugins/tmux-yank'
+set -g @plugin 'robhurring/tmux-uptime'
+set -g @plugin 'tmux-plugins/tmux-resurrect'
+set -g @plugin 'tmux-plugins/tmux-continuum'
+set -g @plugin 'laktak/extrakto'
+set -g @plugin 'laktak/tome'
+set -g @plugin 'tmux-plugins/tmux-prefix-highlight'
+set -g @plugin 'spywhere/tmux-named-snapshot'
+set -g @plugin 'tmux-plugins/tmux-sensible'
+set @plugin 'briansalehi/tmux-acpi'
+
+# Set 256 colors
+set -s default-terminal 'tmux-256color'
+
+# Right Status
+set -g status-right "#{prefix_highlight} | uptime: #{uptime} | %a %h-%d %H:%M "
+# set -g allow-passthrough on
+#set -g @continuum-restore 'on'
+#set -g @continuum-boot 'on'
+
+# Colors
+set -g @acpi_format_begin '#[fg=white,bg=colour236]'
+set -g @acpi_format_end '#[fg=white,bg=black]'
+
+# Icons
+set -g @acpi_icon_battery_full '🔋'
+set -g @acpi_icon_battery_low '🪫'
+set -g @acpi_icon_battery_charging '🚀'
+set -g @acpi_icon_battery_discharging '⚰️ '
+set -g @acpi_icon_battery_health '🩺'
+set -g @acpi_icon_adapter_connected '⚡️'
+set -g @acpi_icon_adapter_disconnected '🔌'
+set -g @acpi_icon_thermal_cold '❄️ '
+set -g @acpi_icon_thermal_hot '🔥'
+set -g @acpi_icon_thermal_critical '☢️ '
+
+# Values
+set -g @acpi_icon_thermal_unit 'Celsius' # Fahrenheit, Kelvin
+
+#set -g status-right 'Continuum status: #{continuum_status}'
+set -g @resurrect-processes 'ssh psql mysql sqlite3'
+
+# Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
+run '~/.tmux/plugins/tpm/tpm'

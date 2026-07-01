@@ -1,0 +1,12 @@
+return {
+  "anurag3301/nvim-platformio.lua",
+  dependencies = {
+    "akinsho/nvim-toggleterm.lua",
+    "nvim-telescope/telescope.nvim",
+    "nvim-lua/plenary.nvim",
+  },
+  config = function()
+    require("platformio").setup({})
+  end,
+  event = "VeryLazy", -- load lazily or change as needed
+}

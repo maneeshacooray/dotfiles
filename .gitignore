@@ -1,0 +1,18 @@
+# kitty background images
+kitty/*.png
+
+# nvim state/cache
+nvim/.neovim/
+nvim/lazy-lock.json
+
+# btop logs
+btop/*.log
+
+# gitconfig with tokens
+.gitconfig
+
+# tmux plugins (installed by TPM)
+tmux/plugins/
+
+# DS_Store
+.DS_Store
