@@ -1,4 +1,4 @@
-# Add your local tmux config here# Add your local tmux config here# Add your local tmux config here
+# Local tmux config: plugins and status bar
 
 # List of plugins
 set -g @plugin 'tmux-plugins/tpm'
@@ -11,23 +11,24 @@ set -g @plugin 'laktak/extrakto'
 set -g @plugin 'laktak/tome'
 set -g @plugin 'tmux-plugins/tmux-prefix-highlight'
 set -g @plugin 'spywhere/tmux-named-snapshot'
-set -g @plugin 'tmux-plugins/tmux-sensible'
-set @plugin 'briansalehi/tmux-acpi'
 
-# Set 256 colors
-set -s default-terminal 'tmux-256color'
+# Battery widget (Linux only: requires acpi)
+if-shell 'uname | grep -q Linux' \
+  "set -g @plugin 'briansalehi/tmux-acpi'"
 
 # Right Status
-set -g status-right "#{prefix_highlight} | uptime: #{uptime} | %a %h-%d %H:%M "
-# set -g allow-passthrough on
-#set -g @continuum-restore 'on'
-#set -g @continuum-boot 'on'
+if-shell 'uname | grep -q Linux' \
+  "set -g status-right '#{prefix_highlight} | #{battery} | up: #{uptime} | %a %h-%d %H:%M '" \
+  "set -g status-right '#{prefix_highlight} | up: #{uptime} | %a %h-%d %H:%M '"
 
-# Colors
+# set -g @continuum-restore 'on'
+# set -g @continuum-boot 'on'
+
+# acpi widget colors
 set -g @acpi_format_begin '#[fg=white,bg=colour236]'
 set -g @acpi_format_end '#[fg=white,bg=black]'
 
-# Icons
+# acpi icons
 set -g @acpi_icon_battery_full '🔋'
 set -g @acpi_icon_battery_low '🪫'
 set -g @acpi_icon_battery_charging '🚀'
@@ -39,11 +40,10 @@ set -g @acpi_icon_thermal_cold '❄️ '
 set -g @acpi_icon_thermal_hot '🔥'
 set -g @acpi_icon_thermal_critical '☢️ '
 
-# Values
+# acpi values
 set -g @acpi_icon_thermal_unit 'Celsius' # Fahrenheit, Kelvin
 
-#set -g status-right 'Continuum status: #{continuum_status}'
 set -g @resurrect-processes 'ssh psql mysql sqlite3'
 
-# Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
+# Initialize TMUX plugin manager (keep this line at the very bottom)
 run '~/.tmux/plugins/tpm/tpm'
