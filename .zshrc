@@ -1,127 +1,19 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
-
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 export EDITOR=nvim
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time Oh My Zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="spaceship"
 
-# Set list of themes to pick from when loading at random
-# Setting this variable when ZSH_THEME="spaceship"
-# a theme from this variable instead of looking in $ZSH/themes/
-# If set to an empty array, this variable will have no effect.
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
-
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
-
-# Uncomment the following line to use hyphen-insensitive completion.
-# Case-sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
-
-# Uncomment one of the following lines to change the auto-update behavior
-# zstyle ':omz:update' mode disabled  # disable automatic updates
-# zstyle ':omz:update' mode auto      # update automatically without asking
-# zstyle ':omz:update' mode reminder  # just remind me to update when it's time
-
-# Uncomment the following line to change how often to auto-update (in days).
-# zstyle ':omz:update' frequency 13
-
-# Uncomment the following line if pasting URLs and other text is messed up.
-# DISABLE_MAGIC_FUNCTIONS="true"
-
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
-
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-# You can also set it to another string to have that shown instead of the default red dots.
-# e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
-# Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
-# COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# You can set one of the optional three formats:
-# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# or set a custom format using the strftime function format specifications,
-# see 'man strftime' for details.
-# HIST_STAMPS="mm/dd/yyyy"
-
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
 # Which plugins would you like to load?
-# Standard plugins can be found in $ZSH/plugins/
-# Custom plugins may be added to $ZSH_CUSTOM/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
 plugins=(git zsh-autosuggestions you-should-use zsh-bat fzf poetry fzf-tab direnv fast-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
-
-# User configuration
-
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# Set personal aliases, overriding those provided by Oh My Zsh libs,
-# plugins, and themes. Aliases can be placed here, though Oh My Zsh
-# users are encouraged to define aliases within a top-level file in
-# the $ZSH_CUSTOM folder, with .zsh extension. Examples:
-# - $ZSH_CUSTOM/aliases.zsh
-# - $ZSH_CUSTOM/macos.zsh
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # zsh history
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
 setopt appendhistory
-
-# SPACESHIP_PROMPT_ORDER=(
-# #  user          # Username section
-#   time
-#   dir
-#   host          # Hostname section
-#   git           # Git section (git_branch + git_status)
-#   package       # Package version
-#   exec_time     # Execution time
-#   line_sep      # Line break
-#   jobs          # Background jobs indicator
-#   exit_code     # Exit code section
-#   char          # Prompt character
-# )
+setopt interactivecomments
 
 SPACESHIP_PROMPT_ORDER=(
   time           # Time stamps section
@@ -186,7 +78,6 @@ SPACESHIP_PROMPT_ORDER=(
   char           # Prompt character
 )
 
-#SPACESHIP_USER_SHOW=always
 SPACESHIP_PROMPT_ADD_NEWLINE=false
 SPACESHIP_CHAR_SYMBOL="🚀"
 SPACESHIP_CHAR_SUFFIX=" "
@@ -201,41 +92,79 @@ zstyle ':fzf-tab:*' switch-group '<' '>'
 zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
 
 # -----------------------------------------------------
-# Fastfetch
+# Fastfetch (disabled: slows down shell startup)
 # -----------------------------------------------------
-# The following block was commented out because it runs `fastfetch` on every new shell,
-# which can significantly slow down startup time.
 # if [[ $(tty) == *"pts"* ]]; then
 #     fastfetch
 # fi
 
-# eval "$(spaceship init zsh)"
+# -----------------------------------------------------
+# Platform-specific PATH and tooling
+# -----------------------------------------------------
+case "$(uname)" in
+  Darwin)
+    export PATH="$PATH:$HOME/.local/bin"
+    export PATH="$PATH:$HOME/.spicetify"
+    export PATH="$HOME/.antigravity/antigravity/bin:$PATH"
+    export PATH="$HOME/.antigravity-ide/antigravity-ide/bin:$PATH"
 
-export PATH="$PATH:/Users/maneesha/.local/bin"
+    export ANDROID_HOME="$HOME/Library/Android/sdk"
+    export PATH="$ANDROID_HOME/platform-tools:$PATH"
+
+    # JAVA_HOME for Gradle (Homebrew OpenJDK)
+    export JAVA_HOME="/opt/homebrew/opt/openjdk"
+    export PATH="$JAVA_HOME/bin:$PATH"
+
+    export PATH="$PATH:/Applications/Obsidian.app/Contents/MacOS"
+
+    # nvm (Homebrew install), deferred until first use
+    export NVM_DIR="$HOME/.nvm"
+    if [ -s "$NVM_DIR/nvm.sh" ]; then
+        declare -a __node_commands=("nvm" "node" "npm" "yarn" "pnpm")
+        for cmd in "${__node_commands[@]}"; do
+            eval "${cmd}() { unset -f ${__node_commands[@]}; . '${NVM_DIR}/nvm.sh'; ${cmd} \$@ }"
+        done
+    fi
+    [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
+    ;;
+  Linux)
+    export PATH="$PATH:$HOME/.local/bin"
+
+    # JAVA_HOME if a JDK is installed (Arch: /usr/lib/jvm/default)
+    [ -d /usr/lib/jvm/default ] && export JAVA_HOME="/usr/lib/jvm/default"
+
+    # Android SDK if present
+    [ -d "$HOME/Android/Sdk" ] && export ANDROID_HOME="$HOME/Android/Sdk" \
+      && export PATH="$ANDROID_HOME/platform-tools:$PATH"
+
+    # nvm via AUR package, deferred until first use
+    if [ -s /usr/share/nvm/init-nvm.sh ]; then
+        export NVM_DIR="$HOME/.nvm"
+        declare -a __node_commands=("nvm")
+        for cmd in "${__node_commands[@]}"; do
+            eval "${cmd}() { unset -f ${__node_commands[@]}; . /usr/share/nvm/init-nvm.sh; ${cmd} \$@ }"
+        done
+    fi
+    ;;
+esac
+
 export GOOGLE_CLOUD_PROJECT="durable-river-464104-k9"
-export PATH=$PATH:/Users/maneesha/.spicetify
-export PATH="/Users/maneesha/.antigravity/antigravity/bin:$PATH"
-export NVM_DIR="$HOME/.nvm"
-# Defer loading nvm until it's actually used
-if [ -s "$NVM_DIR/nvm.sh" ]; then
-    declare -a __node_commands=("nvm" "node" "npm" "yarn" "pnpm")
-    for cmd in "${__node_commands[@]}"; do
-        eval "${cmd}() { unset -f ${__node_commands[@]}; . '${NVM_DIR}/nvm.sh'; ${cmd} \$@ }"
-    done
-fi
-if [ -s "$NVM_DIR/bash_completion" ]; then
-  . "$NVM_DIR/bash_completion"
+
+# fzf shell integration
+if [[ "$(uname)" == "Linux" && -f /usr/share/fzf/key-bindings.zsh ]]; then
+    source /usr/share/fzf/key-bindings.zsh
+    source /usr/share/fzf/completion.zsh
+else
+    [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 fi
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# rustup, if installed via rustup.rs (guarded: absent on Arch's rustup package)
+[ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
 
-. "$HOME/.cargo/env"
-
-
-
+# -----------------------------------------------------
+# Aliases
+# -----------------------------------------------------
 alias cd="z"
-alias lt="tree -L 1"
-
 alias cat="bat"
 alias rcat="/bin/cat"
 
@@ -253,24 +182,4 @@ alias puka='TERM="xterm-256color" lazyssh'
 
 alias ani='ani-cli -c -N --skip'
 
-# Added by Antigravity
-export PATH="/Users/maneesha/.antigravity/antigravity/bin:$PATH"
-
-export ANDROID_HOME="/Users/maneesha/Library/Android/sdk"
-export PATH="$ANDROID_HOME/platform-tools:$PATH"
-
-# Set JAVA_HOME for Gradle
-export JAVA_HOME="/opt/homebrew/opt/openjdk"
-export PATH="$JAVA_HOME/bin:$PATH"
-export PATH="$PATH:/Applications/Obsidian.app/Contents/MacOS"
-
-# Added by Antigravity
-export PATH="/Users/maneesha/.antigravity/antigravity/bin:$PATH"
-
-# Added by Antigravity IDE
-export PATH="/Users/maneesha/.antigravity-ide/antigravity-ide/bin:$PATH"
-
-# Added by Antigravity IDE
-export PATH="/Users/maneesha/.antigravity-ide/antigravity-ide/bin:$PATH"
 eval "$(zoxide init zsh)"
-
