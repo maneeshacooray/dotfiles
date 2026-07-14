@@ -708,5 +708,6 @@ binds {
     // Powers off the monitors. To turn them back on, do any input like
     // moving the mouse or pressing any other key.
     Mod+Shift+P { power-off-monitors; }
+    Mod+Shift+C hotkey-overlay-title="Clipboard History" { spawn "vicinae" "vicinae://launch/clipboard/history?toggle=true"; }
 }
 include "./noctalia.kdl"
