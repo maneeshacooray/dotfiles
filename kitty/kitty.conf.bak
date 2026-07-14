@@ -20,12 +20,5 @@ hide_window_decorations True
 # macos_option_as_alt yes
 
 enable_audio_bell no
-background_opacity 0.75
 # Theme
 include themes/current-theme.conf
-
-
-# BEGIN_KITTY_THEME
-# Noctalia
-include current-theme.conf
-# END_KITTY_THEME

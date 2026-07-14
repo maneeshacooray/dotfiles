@@ -19,3 +19,7 @@ tmux/plugins/
 
 # yarn auto-generated
 .yarnrc
+kitty/current-theme.conf
+noctalia/cache/
+noctalia/colors.json
+kitty/current-theme.conf
