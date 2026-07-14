@@ -43,11 +43,11 @@
         "autoHideDelay": 500,
         "autoShowDelay": 150,
         "backgroundOpacity": 0,
-        "barType": "floating",
+        "barType": "framed",
         "capsuleColorKey": "none",
         "capsuleOpacity": 0.65,
         "contentPadding": 2,
-        "density": "default",
+        "density": "comfortable",
         "displayMode": "auto_hide",
         "enableExclusionZoneInset": true,
         "fontScale": 1,
@@ -146,17 +146,32 @@
                     ]
                 },
                 {
-                    "defaultSettings": {
-                        "connectedColor": "primary",
-                        "disconnectedColor": "none",
-                        "refreshInterval": 5000
-                    },
-                    "id": "plugin:cloudflare-warp"
+                    "displayMode": "onhover",
+                    "iconColor": "none",
+                    "id": "Network",
+                    "textColor": "none"
+                },
+                {
+                    "displayMode": "onhover",
+                    "iconColor": "none",
+                    "id": "VPN",
+                    "textColor": "none"
+                },
+                {
+                    "displayMode": "onhover",
+                    "iconColor": "none",
+                    "id": "Bluetooth",
+                    "textColor": "none"
                 },
                 {
                     "defaultSettings": {
                     },
                     "id": "plugin:kde-connect"
+                },
+                {
+                    "iconColor": "none",
+                    "id": "KeepAwake",
+                    "textColor": "none"
                 },
                 {
                     "displayMode": "onhover",
@@ -295,14 +310,37 @@
                         "hideMode": "idle",
                         "id": "MediaPlayer",
                         "roundedCorners": true,
-                        "scale": 0.8050000000000002,
+                        "scale": 1,
                         "showAlbumArt": true,
                         "showBackground": true,
                         "showButtons": true,
                         "showVisualizer": true,
-                        "visualizerType": "linear",
-                        "x": 690,
-                        "y": 46
+                        "visualizerType": "wave",
+                        "x": 760,
+                        "y": 40
+                    },
+                    {
+                        "clockColor": "none",
+                        "clockStyle": "minimal",
+                        "customFont": "JetBrainsMono NF ExtraLight",
+                        "format": "HH:mm\\nd MMMM yyyy",
+                        "id": "Clock",
+                        "roundedCorners": true,
+                        "showBackground": true,
+                        "useCustomFont": true,
+                        "x": 50,
+                        "y": 50
+                    },
+                    {
+                        "diskPath": "/",
+                        "id": "SystemStat",
+                        "layout": "bottom",
+                        "roundedCorners": true,
+                        "scale": 1.1666666666666667,
+                        "showBackground": true,
+                        "statType": "CPU",
+                        "x": 40,
+                        "y": 200
                     }
                 ]
             }
@@ -316,7 +354,7 @@
         "deadOpacity": 0.6,
         "displayMode": "always_visible",
         "dockType": "attached",
-        "enabled": false,
+        "enabled": true,
         "floatingRatio": 1,
         "groupApps": true,
         "groupClickAction": "cycle",
@@ -650,6 +688,14 @@
             {
                 "enabled": true,
                 "id": "zenBrowser"
+            },
+            {
+                "enabled": true,
+                "id": "discord"
+            },
+            {
+                "enabled": true,
+                "id": "steam"
             }
         ],
         "enableUserTheming": true
@@ -694,12 +740,12 @@
         "transitionDuration": 1500,
         "transitionEdgeSmoothness": 0.05,
         "transitionType": [
-            "pixelate"
+            "honeycomb"
         ],
         "useOriginalImages": false,
         "useSolidColor": false,
         "useWallhaven": false,
-        "viewMode": "recursive",
+        "viewMode": "browse",
         "wallhavenApiKey": "",
         "wallhavenCategories": "111",
         "wallhavenOrder": "desc",

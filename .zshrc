@@ -182,3 +182,4 @@ alias puka='TERM="xterm-256color" lazyssh'
 alias ani='ani-cli -c -N --skip'
 
 eval "$(zoxide init zsh)"
+export PATH=$PATH:~/.spicetify
