@@ -86,10 +86,10 @@ zstyle :omz:plugins:ssh-agent agent-forwarding on
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
-zstyle ':fzf-tab:complete:cd:*' fzf-preview '[[ -d $realpath ]] && eza --tree --level=2 --color=always $realpath || eza --long --color=always $realpath'
+zstyle ':fzf-tab:complete:*:*' fzf-preview '[[ -d $realpath ]] && eza --tree --level=2 --color=always $realpath || bat --color=always --style=numbers --line-range=:200 $realpath 2>/dev/null || eza -l --color=always $realpath'
 zstyle ':fzf-tab:*' popup-min-size 80 12
 zstyle ':fzf-tab:*' switch-group '<' '>'
-zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
+# zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
 
 # -----------------------------------------------------
 # Fastfetch (disabled: slows down shell startup)
@@ -150,10 +150,9 @@ esac
 
 export GOOGLE_CLOUD_PROJECT="durable-river-464104-k9"
 
-# fzf shell integration
+# fzf shell integration (key-bindings only; completion is handled by fzf-tab)
 if [[ "$(uname)" == "Linux" && -f /usr/share/fzf/key-bindings.zsh ]]; then
     source /usr/share/fzf/key-bindings.zsh
-    source /usr/share/fzf/completion.zsh
 else
     [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 fi
