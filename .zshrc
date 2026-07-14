@@ -157,6 +157,11 @@ else
     [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 fi
 
+if [[ -z "$TMUX" && "$TERM" == "xterm-kitty" && -z "$FASTFETCH_SHOWN" ]]; then
+    export FASTFETCH_SHOWN=1
+    fastfetch
+fi
+
 # rustup, if installed via rustup.rs (guarded: absent on Arch's rustup package)
 [ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
 
