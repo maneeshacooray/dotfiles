@@ -185,6 +185,6 @@ alias ssh='TERM="xterm-256color" ssh'
 alias puka='TERM="xterm-256color" lazyssh'
 
 alias ani='ani-cli -c -N --skip'
-
+alias ff='fastfetch'
 eval "$(zoxide init zsh)"
 export PATH=$PATH:~/.spicetify
