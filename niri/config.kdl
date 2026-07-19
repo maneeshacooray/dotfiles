@@ -451,7 +451,8 @@ binds {
 
     Mod+Return hotkey-overlay-title="Open Terminal: kitty" { spawn "kitty"; }
     Ctrl+Shift+Escape hotkey-overlay-title="Open System Monitor: btop" { spawn-sh "kitty zsh -i -c btop"; }
-    Mod+Alt+L hotkey-overlay-title="Lock the Screen: noctalia-shell" { spawn-sh "qs -c noctalia-shell ipc call lockScreen lock"; }
+    // Mod+Alt+L hotkey-overlay-title="Lock the Screen: noctalia-shell" { spawn-sh "qs -c noctalia-shell ipc call lockScreen lock"; }
+    Mod+Alt+L hotkey-overlay-title="Lock Screen" { spawn-sh "~/.local/share/quickshell-lockscreen/lock.sh"; }
     Mod+Shift+W hotkey-overlay-title="Change Wallpaper: noctalia-shell" { spawn-sh "qs -c noctalia-shell ipc call wallpaper toggle"; }
     Mod+Alt+P hotkey-overlay-title="Session Menu" { spawn-sh "qs -c noctalia-shell ipc call sessionMenu toggle"; }
     Mod+B hotkey-overlay-title="Open Browser: Zen Browser" { spawn "zen-browser"; }
@@ -459,7 +460,8 @@ binds {
     Mod+P hotkey-overlay-title="Open Pomodoro: pomoru" { spawn-sh "kitty zsh -i -c pomoru"; }
     Mod+S hotkey-overlay-title="Open Spotify" { spawn "spotify"; }
     Mod+O hotkey-overlay-title="Open Obsidian" { spawn "obsidian"; }
-
+    Shift+Print hotkey-overlay-title="Toggle Recording" { spawn-sh "qs -c noctalia-shell ipc call plugin:screen-recorder toggle"; }
+    Mod+Alt+R hotkey-overlay-title="Save Replay" { spawn-sh "qs -c noctalia-shell ipc call plugin:screen-recorder saveReplay"; }
     // Use spawn-sh to run a shell command. Do this if you need pipes, multiple commands, etc.
     // Note: the entire command goes as a single argument. It's passed verbatim to `sh -c`.
     // For example, this is a standard bind to toggle the screen reader (orca).
